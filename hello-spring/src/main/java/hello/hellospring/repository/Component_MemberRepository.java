@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 // 03.07 : 3.3~ 회원 repo 인터피에스 (현재 db x -> interface로 임시 구현 가정 상황)
-public interface MemberRepository {
+public interface Component_MemberRepository {
 
     Member saveMember(Member member);
 

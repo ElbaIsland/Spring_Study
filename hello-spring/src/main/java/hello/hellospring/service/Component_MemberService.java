@@ -1,7 +1,9 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.Component_MemberRepository;
 import hello.hellospring.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,13 +11,16 @@ import java.util.Optional;
 
 // 03.07 회원 관리 예제 - 비즈니스 개발
 
-public class MemberService {
+@Service // 03.08 추가 3) 서비스 역시 컨트롤러처럼 등록
+public class Component_MemberService {
 
-    private final MemberRepository memberRepository;
+    private final Component_MemberRepository memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {
+    @Autowired // repository와 연결함을 통해 의존관계 주입!
+    public Component_MemberService(Component_MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
 
     /**
      * 회원 가입

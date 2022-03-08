@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
 public class HelloController {
 
     // 1) 스프링 웹 개발 기초 : 정적 컨텐츠

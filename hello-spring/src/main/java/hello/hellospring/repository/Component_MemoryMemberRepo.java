@@ -7,7 +7,8 @@ import java.util.*;
 
 // 위에서 구현한  Member, MemberRepo 
 
-public class MemoryMemberRepo implements MemberRepository {
+@Repository // 03.08 추가 4) repository 역시 컨트롤러처럼 등록(껍떼기 interface가 아닌, 구현체에다 추가하기)
+public class Component_MemoryMemberRepo implements Component_MemberRepository{
 
     private static Map<Long, Member> storeMembRepo = new HashMap<>();
     private static Long seq = 0L;
