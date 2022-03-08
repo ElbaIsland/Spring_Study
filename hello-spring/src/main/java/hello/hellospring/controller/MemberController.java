@@ -1,8 +1,14 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // 03.08 : 스프링 빈과 의존관계 설정
 
@@ -26,6 +32,24 @@ public class MemberController {
     @GetMapping(value = "/members/new")
     public String createForm() {
         return "members/createMemberForm";
+    }
+
+    // 03.09 추가 => basicHomePage > 가입 페이지 만들기
+    // 위에서 createMemberForm로 들어온 상태 >> method = post이므로, postmapping과 자동 연계된다.
+    // get은 조회시, post는 데이터 조작시..기억나지?
+    @PostMapping(value = "/members/new")
+    public String create(BasicMemberForm form) {
+        Member member = new Member();
+        member.setMemberName(form.getName());   //  BasicMemberForm의 이름을 set한다!!!
+        memberService.join(member); //  new member join(회원가입) 로직
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findAllMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 
 }
