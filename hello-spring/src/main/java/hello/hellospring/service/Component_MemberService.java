@@ -32,15 +32,15 @@ public class Component_MemberService {
         // 1) 같은 이름 회원 가입 불가 룰
         // *** ctrl + alt + v 기억하자 => 자동 변수 추출
         // 방식 1
-//        Optional<Member> membByName = memberRepository.findMembByName(member.getMemberName());
+//        Optional<Member> membByName = memberRepository.findByName(member.getName());
 //        membByName.ifPresent( member1 -> {
 //                    throw new IllegalStateException("이미 존재하는 회원입니다.");
 //        });
         // 방식 2
         DuplicateMemberChk(member); //  로직 만든 후 긁어서 cntl + t => extract method -> 메소드 만들기 가능
 
-        memberRepository.saveMember(member);
-        return member.getSystemId();
+        memberRepository.save(member);
+        return member.getId();
     }
 
     /**
@@ -54,16 +54,16 @@ public class Component_MemberService {
 
     /**
      * id로 회원 조회
-     * @param memberId
+     * @param memberid
      * @return Member
      */
-    public Optional<Member> findOne(Long memberId){
-        return memberRepository.findMembById(memberId);
+    public Optional<Member> findOne(Long memberid){
+        return memberRepository.findById(memberid);
     }
 
 
     private void DuplicateMemberChk(Member member) {
-        memberRepository.findMembByName(member.getMemberName())
+        memberRepository.findByName(member.getName())
                 .ifPresent( member1 -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });

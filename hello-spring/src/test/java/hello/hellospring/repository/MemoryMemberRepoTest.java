@@ -24,10 +24,10 @@ class MemoryMemberRepoTest {
     @Test
     public void save(){ // 좌측 초록버튼 클릭 후 실행시, 아래 run 결과가 테스트형식으로 출력된다.
         Member member = new Member();
-        member.setMemberName("Spring-jUnit-test");
-        repo.saveMember(member);
+        member.setName("Spring-jUnit-test");
+        repo.save(member);
 
-        Member testResult = repo.findMembById(member.getSystemId()).get();
+        Member testResult = repo.findById(member.getId()).get();
         System.out.println("testResult = " + (testResult == member));   //  soutv 명령어 기억하자!
 
         // 1) junit Assertions : 성공시 초록불 / 실패시 빨간불로 확인 가능
@@ -41,15 +41,15 @@ class MemoryMemberRepoTest {
     public void findByName(){
 
         Member member1 = new Member();
-        member1.setMemberName("spring-test1");
-        repo.saveMember(member1);
+        member1.setName("spring-test1");
+        repo.save(member1);
 
         // shift + f6 : 개꿀팁 2 => 복붙시 에러나는 변수명에 대고 키 누르면 전체 변수명 변경가능
         Member member2 = new Member();
-        member2.setMemberName("spring-test1");
-        repo.saveMember(member2);
+        member2.setName("spring-test1");
+        repo.save(member2);
 
-        Member result = repo.findMembByName("spring-test1").get();
+        Member result = repo.findByName("spring-test1").get();
 
         assertThat(result).isEqualTo(member1);
         assertThat(result).isEqualTo(member2);  //  여기서 에러발생 확인
@@ -59,11 +59,11 @@ class MemoryMemberRepoTest {
     public void findAll(){
         //given
         Member member1 = new Member();
-        member1.setMemberName("spring1");
-        repo.saveMember(member1);
+        member1.setName("spring1");
+        repo.save(member1);
         Member member2 = new Member();
-        member2.setMemberName("spring2");
-        repo.saveMember(member2);
+        member2.setName("spring2");
+        repo.save(member2);
         //when
         List<Member> result = repo.findAll();
         //then

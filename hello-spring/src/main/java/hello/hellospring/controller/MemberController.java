@@ -40,7 +40,7 @@ public class MemberController {
     @PostMapping(value = "/members/new")
     public String create(BasicMemberForm form) {
         Member member = new Member();
-        member.setMemberName(form.getName());   //  BasicMemberForm의 이름을 set한다!!!
+        member.setName(form.getName());   //  BasicMemberForm의 이름을 set한다!!!
         memberService.join(member); //  new member join(회원가입) 로직
         return "redirect:/";
     }

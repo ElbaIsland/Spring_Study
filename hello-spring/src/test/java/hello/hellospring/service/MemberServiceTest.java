@@ -41,23 +41,23 @@ class MemberServiceTest {
     void 회원가입이지롱_테스트는_한글로해도되지롱() {
         // given
         Member member = new Member();
-        member.setMemberName("hello");
+        member.setName("hello");
 
         // when
-        Long saveId = memberService.join(member);
+        Long saveid = memberService.join(member);
 
         // then
-        Member findedone = memberService.findOne(saveId).get();
-        assertThat(member.getMemberName()).isEqualTo(findedone.getMemberName());    //  alt + enter Assertions 올린것 기억나제?
+        Member findedone = memberService.findOne(saveid).get();
+        assertThat(member.getName()).isEqualTo(findedone.getName());    //  alt + enter Assertions 올린것 기억나제?
     }
 
     @Test
     void 중복회원_예외테스트() {
         //Given (이름중복)
         Member member1 = new Member();
-        member1.setMemberName("spring");
+        member1.setName("spring");
         Member member2 = new Member();
-        member2.setMemberName("spring");
+        member2.setName("spring");
 
         //When
         memberService.join(member1);
