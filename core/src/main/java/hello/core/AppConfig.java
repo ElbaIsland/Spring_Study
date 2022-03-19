@@ -62,7 +62,7 @@ public class AppConfig {
     public DiscountPolicy discountPolicy() {
         // 03.16 두번째 수정 : 만약 할인 정책에 수정이 들어간다면? (고정 => 비율정책으로...)
         // 아래와 같이 discountPolicy만 바꾸면 ok
-    //    return new FixDiscountPolicy();
+        // return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
 
