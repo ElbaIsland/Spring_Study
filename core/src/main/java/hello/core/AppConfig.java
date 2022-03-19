@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  *   1) 먼저 클래스 앞에다가 Configuration(설정정보, 구성정보를 뜻함) 붙여주기
  */
 @Configuration
-public class AppConfig {
+public class  AppConfig {
 
     /**
      * AppConfig : 애플리케이션의 전체 동작 방식을 구성(=설정)하는 클래스 like (공연에서의) 공연 기획자.
