@@ -62,6 +62,6 @@ public class ApplicationContextBasicFindTest {
 
         // 2번 : 아래 명명한 오류가 발생하면 테스트성공, 발생하지 않으면 테스트실패
         assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean("noNameError", MemberService.class));
-    }
+    } 
 
 }
