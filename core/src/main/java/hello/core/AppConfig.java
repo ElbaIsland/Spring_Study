@@ -14,6 +14,10 @@ import org.springframework.context.annotation.Configuration;
 
 /**  03.17 추가 : AppConfig Spring 기반으로 변경하기 By Annotation
  *   1) 먼저 클래스 앞에다가 Configuration(설정정보, 구성정보를 뜻함) 붙여주기
+ *
+ *   03.29 추가 : @Configuration과 싱글톤
+ *   1. @Configuration은 싱글톤을 나타낸다?
+ *
  */
 @Configuration
 public class  AppConfig {
@@ -37,7 +41,14 @@ public class  AppConfig {
     // 이 역할을 잘 드러나도록 리펙토링이 필요하다!
     // 결론 : 아래와 같이 변경하면, 각 메소드별 역할을 명확하게 알 수 있다.
 
-    /** AppConfig Spring 기반으로 변경
+    /** 03.29 @Configuration과 싱글톤
+     * 2. @Bean memberService = new MemoryMemberRepository() 형태
+     *    @Bean orderService = new MemoryMemberRepository() 형태
+     *    어? 싱글톤인데 왜 같은 메소드를 두번 호출하는거지?
+     */
+
+
+    /** 03.17 AppConfig Spring 기반으로 변경
      *  2) 각 메소드 앞에 @Bean(Spring Container를 뜻함) 붙여주기
      */
     @Bean
@@ -55,7 +66,7 @@ public class  AppConfig {
     // ==> ctrl + alt + m 단축키(리펙토링 메소드)로 new FixDiscountPolicy()를 변경 + 아래 메소드의 선언부는 interface를 가리키도록
     public OrderService orderService(){
         return new OrderServiceImpl(
-                new MemoryMemberRepository(), discountPolicy());
+                memberRepository(), discountPolicy());
     }
 
     @Bean

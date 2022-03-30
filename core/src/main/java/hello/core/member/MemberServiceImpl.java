@@ -19,12 +19,21 @@ public class MemberServiceImpl implements MemberService {
         this.memberRepository = memberRepository;
     }
 
-
+    @Override
     public void join(Member member) {
         memberRepository.save(member);
     }
 
+    @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    /** 03.29 @Configuration과 싱글톤
+     *  싱글톤 여부를 확인하기 위한 테스트 용도
+     */
+    public MemberRepository getMemberRepository(){
+        return memberRepository;
+    }
+
 }

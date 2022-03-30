@@ -22,7 +22,6 @@ public class OrderServiceImpl implements OrderService{
         this.discountPolicy = discountPolicy;
     }
 
-
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
 
@@ -36,4 +35,13 @@ public class OrderServiceImpl implements OrderService{
 
         return new Order(memberId, itemName, itemPrice, discountPrice); // 3) 최종생성된 주문 반환
     }
+
+    /** 03.29 @Configuration과 싱글톤
+     *  싱글톤 여부를 확인하기 위한 테스트 용도
+     */
+    public MemberRepository getMemberRepository(){
+        return memberRepository;
+    }
+
+
 }
